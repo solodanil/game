@@ -1,7 +1,17 @@
 import os
+import sys
 
 import pygame
 import pygame.examples.eventlist
+
+
+class Background(pygame.sprite.Sprite):
+    def __init__(self, group, bg_filename):
+        super(Background, self).__init__()
+        self.img = load_image(bg_filename)
+        self.rect = self.img.get_rect()
+        self.rect.x, self.rect.y = 0, 0
+        print(0)
 
 
 def load_image(name, colorkey=None):
