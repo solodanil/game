@@ -3,12 +3,26 @@ import sys
 import random
 
 import pygame
-from tools import load_image, Background
+from tools import load_image
 
 pygame.init()
 size = width, height = 900, 600
 screen = pygame.display.set_mode(size)
 
+p1, p2 = 0, 0
+
+
+def show_points(sc):
+    font = pygame.font.Font(None, 60)
+    points1 = font.render(str(p1), True, (255, 255, 255))
+    p1_x = 273
+    p1_y = 32
+    sc.blit(points1, (p1_x, p1_y))
+
+    points2 = font.render(str(p2), True, (255, 255, 255))
+    p2_x = 585
+    p2_y = 534
+    sc.blit(points2, (p2_x, p2_y))
 
 
 class Pow(pygame.sprite.Sprite):
@@ -51,7 +65,7 @@ class Pow(pygame.sprite.Sprite):
     def update(self):
         if self.pressed:
             self.timer += 1
-            if self.timer > 5:
+            if self.timer > 4:
                 self.unpress()
 
 
@@ -84,7 +98,6 @@ class Fish(pygame.sprite.Sprite):
         pass
 
 
-
 class FishGroup(pygame.sprite.Group):
     def __init__(self, *sprites):
         super().__init__(*sprites)
@@ -94,19 +107,34 @@ class FishGroup(pygame.sprite.Group):
         self.bomb_flag = False
         self.good_flag = False
 
+    def press(self, left: bool):
+        global p1, p2
+        if self.good_flag:
+            self.good_flag = False
+            if left:
+                p1 += 1
+            else:
+                p2 += 1
+        elif self.bomb_flag:
+            self.bomb_flag = False
+            if left:
+                p1 -= 2
+            else:
+                p2 -= 2
+        self.good.hide()
+        self.bomb.hide()
+
     def update(self, *args):
         super(FishGroup, self).update()
-        rnd = random.randint(0, 120)
-        # print(rnd)
+        print(self.bomb_flag)
+        rnd = random.randint(0, 180)
         if self.good_flag or self.bomb_flag:
             self.timer += 1
         if self.timer > 60 and self.bomb_flag:
-            print(0, self.timer, self.bomb_flag, self.good_flag)
             self.bomb.hide()
             self.bomb_flag = False
             self.timer = 0
-        elif self.timer > 40 and self.good_flag:
-            print(1, self.timer, self.bomb_flag, self.good_flag)
+        elif self.timer > 60 and self.good_flag:
             self.good.hide()
             self.good_flag = False
             self.timer = 0
@@ -116,8 +144,6 @@ class FishGroup(pygame.sprite.Group):
         elif rnd == 1 and not self.bomb_flag and not self.good_flag:
             self.good.show()
             self.good_flag = True
-
-
 
 
 if __name__ == '__main__':
@@ -143,7 +169,6 @@ if __name__ == '__main__':
     running = True
     fps = 30  # пикселей в секунду
     clock = pygame.time.Clock()
-    pygame.mouse.set_visible(False)
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -151,12 +176,16 @@ if __name__ == '__main__':
             if event.type == pygame.KEYDOWN:  # rshift — 303,     lshift — 304
                 if event.key == 303:
                     r_pow.press()
+                    fishs.press(False)
                 elif event.key == 304:
                     l_pow.press()
+                    fishs.press(True)
         screen.fill((255, 255, 255))
+        print(p1, p2)
         fishs.update()
         all_sprites.update()
         all_sprites.draw(screen)
+        show_points(screen)
         pygame.display.flip()
         clock.tick(fps)
 
