@@ -15,12 +15,13 @@ p1, p2 = 0, 0
 def show_points(sc):
     font = pygame.font.Font(None, 60)
     points1 = font.render(str(p1), True, (255, 255, 255))
-    p1_x = 273
+    p1_x = 273 if len(str(p1)) <= 1 else 265
     p1_y = 32
     sc.blit(points1, (p1_x, p1_y))
 
     points2 = font.render(str(p2), True, (255, 255, 255))
-    p2_x = 585
+    p2_x = 585 if len(str(p2)) <= 1 else 577
+    print(len(str(p2)), p2_x)
     p2_y = 534
     sc.blit(points2, (p2_x, p2_y))
 
