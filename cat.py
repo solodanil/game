@@ -173,10 +173,10 @@ def start_cat():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYDOWN:  # rshift — 303,     lshift — 304
-                if event.key == 303:
+                if event.key in (303, 1073742053):
                     r_pow.press()
                     fishs.press(False)
-                elif event.key == 304:
+                elif event.key in (304, 1073742049):
                     l_pow.press()
                     fishs.press(True)
         screen.fill((255, 255, 255))
