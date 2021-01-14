@@ -148,7 +148,6 @@ class FishGroup(pygame.sprite.Group):
 
 
 def start_cat():
-
     screen = pygame.display.set_mode(size)
 
     all_sprites = pygame.sprite.Group()
@@ -191,6 +190,7 @@ def start_cat():
         clock.tick(fps)
 
     pygame.quit()
+
 
 if __name__ == '__main__':
     start_cat()

@@ -50,7 +50,6 @@ def hover(pos, click=True):
 
 
 def start_screen():
-
     clock = pygame.time.Clock()
 
     while True:
