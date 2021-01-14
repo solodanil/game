@@ -17,6 +17,9 @@ start_bg_kub = load_image('start_bg_kub.png')
 start_bg_ping = load_image('start_bg_ping.png')
 start_bg_pow = load_image('start_bg_pow.png')
 
+pygame.mixer.music.load('FortyThr33 - Bay Breeze FREE DOWNLOAD.mp3')
+pygame.mixer.music.set_volume(0.5)
+
 
 def terminate():
     pygame.quit()
@@ -24,6 +27,7 @@ def terminate():
 
 
 def hover(pos, click=True):
+    pygame.mixer.music.play(-1)
     x, y = pos[0], pos[1]
     # 180, 60
     if x in range(180, 400) and y in range(60, 250):
