@@ -5,6 +5,10 @@ import pygame
 import pygame.examples.eventlist
 
 
+def win(p1, p2):  # нужно обязательно сделать
+    pass
+
+
 def load_image(name, colorkey=None):
     pygame.init()
     fullname = os.path.join('images', name)

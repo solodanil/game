@@ -1,7 +1,7 @@
 import pygame
 import random
 
-from tools import load_image
+from tools import load_image, win
 
 
 def run_ping():
@@ -189,6 +189,9 @@ def run_ping():
         pygame.draw.circle(my_win, pygame.color.Color("red"), (int(x), int(y)), int(radius))
         my_win.blit(bumper1_img, (b1_x, b1_y))
         my_win.blit(bumper2_img, (b2_x, b2_y))
+
+        if p1_score > 4 or p2_score > 4:
+            win(p1_score, p2_score)
 
         pygame.display.update()
 

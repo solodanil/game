@@ -3,7 +3,7 @@ import sys
 import random
 
 import pygame
-from tools import load_image
+from tools import load_image, win
 
 pygame.init()
 size = width, height = 900, 600
@@ -23,6 +23,8 @@ def show_points(sc):
     p2_x = 585 if len(str(p2)) <= 1 else 577
     p2_y = 534
     sc.blit(points2, (p2_x, p2_y))
+    if p1 > 4 or p2 > 4:
+        win(p1, p2)
 
 
 class Pow(pygame.sprite.Sprite):
