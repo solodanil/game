@@ -127,7 +127,6 @@ class FishGroup(pygame.sprite.Group):
 
     def update(self, *args):
         super(FishGroup, self).update()
-        print(self.bomb_flag)
         rnd = random.randint(0, 150)
         if self.good_flag or self.bomb_flag:
             self.timer += 1
@@ -181,7 +180,6 @@ def start_cat():
                     l_pow.press()
                     fishs.press(True)
         screen.fill((255, 255, 255))
-        print(p1, p2)
         fishs.update()
         all_sprites.update()
         all_sprites.draw(screen)

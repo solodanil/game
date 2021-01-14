@@ -1,6 +1,8 @@
 import pygame
 import random
 
+from tools import load_image
+
 
 def run_ping():
     pygame.init()
@@ -8,7 +10,7 @@ def run_ping():
     height = 450
     my_win = pygame.display.set_mode((width, height))
     radius = 15
-    bumper_w = 25
+    bumper_w = 50
     bumper_h = 110
     xspeed1 = 0
     xspeed2 = 0
@@ -17,12 +19,14 @@ def run_ping():
     frame_count = 0
     p1_score = 0
     p2_score = 0
+    bumper1_img = load_image('bar1.png')
+    bumper2_img = load_image('bar2.png')
     myFont = pygame.font.Font(None, 48)
     x = width / 2
     y = height / 2
-    b1_x = 0
+    b1_x = 10
     b1_y = 190
-    b2_x = 825
+    b2_x = 790
     b2_y = 190
     num = random.randint(1, 4)
     if num == 1:
@@ -46,21 +50,21 @@ def run_ping():
                 flag = False
             elif event.type == pygame.KEYDOWN:
                 if pygame.key.name(event.key) == "w":
-                    yspeed1 = -12
+                    yspeed1 = -5
                 if pygame.key.name(event.key) == "d":
-                    xspeed1 = 12
+                    xspeed1 = 5
                 if pygame.key.name(event.key) == "s":
-                    yspeed1 = 12
+                    yspeed1 = 5
                 if pygame.key.name(event.key) == "a":
-                    xspeed1 = -12
+                    xspeed1 = -5
                 if pygame.key.name(event.key) == "up":
-                    yspeed2 = -12
+                    yspeed2 = -5
                 if pygame.key.name(event.key) == "right":
-                    xspeed2 = 12
+                    xspeed2 = 5
                 if pygame.key.name(event.key) == "down":
-                    yspeed2 = 12
+                    yspeed2 = 5
                 if pygame.key.name(event.key) == "left":
-                    xspeed2 = -12
+                    xspeed2 = -5
             elif event.type == pygame.KEYUP:
                 if pygame.key.name(event.key) == "w":
                     yspeed1 = 0
@@ -172,7 +176,7 @@ def run_ping():
                     x_v = -1 * x_v
                     y_v = abs(y_v)
 
-        my_win.fill(pygame.color.Color("lightblue"))
+        my_win.fill(pygame.color.Color("#281042"))
 
         score_label_1 = myFont.render("P1: " + str(p1_score), True, pygame.color.Color("darkgreen"))
         my_win.blit(score_label_1, (10, 5))
@@ -189,10 +193,8 @@ def run_ping():
         pygame.draw.rect(my_win, pygame.color.Color("black"), (424, 0, 2, height))
 
         pygame.draw.circle(my_win, pygame.color.Color("red"), (int(x), int(y)), int(radius))
-
-        pygame.draw.rect(my_win, pygame.color.Color("blue"), (b1_x, b1_y, bumper_w, bumper_h))
-
-        pygame.draw.rect(my_win, pygame.color.Color("orange"), (b2_x, b2_y, bumper_w, bumper_h))
+        my_win.blit(bumper1_img, (b1_x, b1_y))
+        my_win.blit(bumper2_img, (b2_x, b2_y))
 
         pygame.display.update()
 

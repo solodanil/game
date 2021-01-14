@@ -53,7 +53,6 @@ def start_screen():
     clock = pygame.time.Clock()
 
     while True:
-        print(pygame.mouse.get_pos())
         screen.blit(hover(pygame.mouse.get_pos()), (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
