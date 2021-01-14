@@ -68,7 +68,6 @@ def run_car():
             if event.type == pygame.QUIT:
                 done = True
             elif event.type == pygame.KEYDOWN:
-                randside = random.randint(0, 1)
                 randy = random.randint(0, 800)
                 if count % 2 == 0:
                     randx = random.randint(0, 900)
