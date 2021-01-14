@@ -39,17 +39,26 @@ def hover(pos, click=True):
         if click:
             return start_bg_ping
         else:
-            run_ping()
+            try:
+                run_ping()
+            except pygame.error:
+                pass
     elif x in range(180, 400) and y in range(300, 500):
         if click:
             return start_bg_pow
         else:
-            start_cat()
+            try:
+                start_cat()
+            except pygame.error:
+                pass
     elif x in range(500, 720) and y in range(300, 500):
         if click:
             return start_bg_car
         else:
-            run_car()
+            try:
+                run_car()
+            except pygame.error:
+                pass
     return start_bg
 
 
