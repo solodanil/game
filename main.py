@@ -20,6 +20,7 @@ start_bg_pow = load_image('start_bg_pow.png')
 pygame.mixer.music.load('FortyThr33 - Bay Breeze FREE DOWNLOAD.mp3')
 pygame.mixer.music.set_volume(0.5)
 
+
 def terminate():
     pygame.quit()
     sys.exit()
