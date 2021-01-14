@@ -21,7 +21,6 @@ def show_points(sc):
 
     points2 = font.render(str(p2), True, (255, 255, 255))
     p2_x = 585 if len(str(p2)) <= 1 else 577
-    print(len(str(p2)), p2_x)
     p2_y = 534
     sc.blit(points2, (p2_x, p2_y))
 

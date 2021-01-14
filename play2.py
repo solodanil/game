@@ -19,6 +19,7 @@ def run_ping():
     frame_count = 0
     p1_score = 0
     p2_score = 0
+    bg = load_image('ping_bg.png')
     bumper1_img = load_image('bar1.png')
     bumper2_img = load_image('bar2.png')
     myFont = pygame.font.Font(None, 48)
@@ -177,20 +178,13 @@ def run_ping():
                     y_v = abs(y_v)
 
         my_win.fill(pygame.color.Color("#281042"))
+        my_win.blit(bg, (0, 0))
 
         score_label_1 = myFont.render("P1: " + str(p1_score), True, pygame.color.Color("darkgreen"))
         my_win.blit(score_label_1, (10, 5))
 
         score_label_2 = myFont.render("P2: " + str(p2_score), True, pygame.color.Color("darkgreen"))
         my_win.blit(score_label_2, (760, 5))
-
-        pygame.draw.circle(my_win, pygame.color.Color("black"), (int(width / 2), int(height / 2)),
-                           125)
-
-        pygame.draw.circle(my_win, pygame.color.Color("lightblue"),
-                           (int(width / 2), int(height / 2)), 123)
-
-        pygame.draw.rect(my_win, pygame.color.Color("black"), (424, 0, 2, height))
 
         pygame.draw.circle(my_win, pygame.color.Color("red"), (int(x), int(y)), int(radius))
         my_win.blit(bumper1_img, (b1_x, b1_y))
