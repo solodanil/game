@@ -2,7 +2,7 @@ import pygame
 import random
 
 
-def run_game():
+def run_ping():
     pygame.init()
     width = 850
     height = 450
@@ -195,4 +195,6 @@ def run_game():
 
     pygame.quit()
 
-run_game()
+
+if __name__ == '__main__':
+    run_ping()

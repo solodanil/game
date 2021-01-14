@@ -128,7 +128,7 @@ class FishGroup(pygame.sprite.Group):
     def update(self, *args):
         super(FishGroup, self).update()
         print(self.bomb_flag)
-        rnd = random.randint(0, 180)
+        rnd = random.randint(0, 150)
         if self.good_flag or self.bomb_flag:
             self.timer += 1
         if self.timer > 60 and self.bomb_flag:
@@ -147,7 +147,7 @@ class FishGroup(pygame.sprite.Group):
             self.good_flag = True
 
 
-if __name__ == '__main__':
+def start_cat():
 
     screen = pygame.display.set_mode(size)
 
@@ -191,3 +191,6 @@ if __name__ == '__main__':
         clock.tick(fps)
 
     pygame.quit()
+
+if __name__ == '__main__':
+    start_cat()
