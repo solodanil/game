@@ -4,7 +4,18 @@ import sys
 import pygame
 import pygame.examples.eventlist
 
-
+# Принудительное закрытие приложения нажав F5 или просто цифру 5
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                running = False
+            elif event.key == pygame.K_F5 or event.key == pygame.K_5:
+                raise SystemExit
+                
 def load_image(name, colorkey=None):
     fullname = os.path.join('images', name)
     # если файл не существует, то выходим
