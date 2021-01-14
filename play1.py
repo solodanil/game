@@ -21,15 +21,17 @@ def run_car():
 
     pygame.init()
     font = pygame.font.Font(None, 50)
-    nameofgame = font.render("Кто быстрее дойдет до красной линии", 1, black)
-    caption = font.render("первый управляет стрелочками", 1, black)
-    caption1 = font.render("второй буковками", 1, black)
-    caption2 = font.render("нажмите пробел для старта", 1, black)
+    nameofgame = font.render("Правила игры:", 1, red)
+    caption = font.render("Кто первый дойдет до красной линии, тот выиграл", 1, black)
+    caption1 = font.render("1 Игрок управляет стрелочками", 1, red)
+    caption3 = font.render("2 Игрок управляет W,A,S,D", 1, black)
+    caption2 = font.render("нажмите пробел для старта", 1, red)
 
-    screensize.blit(nameofgame, (150, 200))
-    screensize.blit(caption, (150, 300))
-    screensize.blit(caption1, (150, 400))
-    screensize.blit(caption2, (150, 500))
+    screensize.blit(nameofgame, (200, 200))
+    screensize.blit(caption, (10, 300))
+    screensize.blit(caption1, (200, 400))
+    screensize.blit(caption3, (200, 500))
+    screensize.blit(caption2, (200, 600))
     pygame.display.flip()
 
     while done == 0:
@@ -273,7 +275,7 @@ def run_car():
                     screensize.fill(black)
                     font = pygame.font.Font(None, 150)
                     winner1 = font.render("1 выиграл", 1, turquoise)
-                    screensize.blit(winner1, (50, 200))
+                    screensize.blit(winner1, (170, 200))
                     pygame.display.flip()
                     time.sleep(5)
                     done = 0
@@ -281,7 +283,7 @@ def run_car():
                     screensize.fill(black)
                     font = pygame.font.Font(None, 150)
                     winner2 = font.render("2 выиграл", 1, turquoise)
-                    screensize.blit(winner2, (50, 200))
+                    screensize.blit(winner2, (170, 200))
                     pygame.display.flip()
                     time.sleep(5)
                     done = 0
