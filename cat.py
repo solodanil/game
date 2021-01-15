@@ -23,8 +23,6 @@ def show_points(sc):
     p2_x = 585 if len(str(p2)) <= 1 else 577
     p2_y = 534
     sc.blit(points2, (p2_x, p2_y))
-    if p1 > 4 or p2 > 4:
-        win(p1, p2)
 
 
 class Pow(pygame.sprite.Sprite):
@@ -148,6 +146,7 @@ class FishGroup(pygame.sprite.Group):
 
 
 def start_cat():
+    end_flag = False
     screen = pygame.display.set_mode(size)
 
     all_sprites = pygame.sprite.Group()
@@ -184,6 +183,9 @@ def start_cat():
         fishs.update()
         all_sprites.update()
         all_sprites.draw(screen)
+        # if p1 > 4 or p2 > 4:
+        #     win(p1, p2)
+        #     break
         show_points(screen)
         pygame.display.flip()
         clock.tick(fps)
