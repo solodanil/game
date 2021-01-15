@@ -3,7 +3,7 @@ import sys
 import random
 
 import pygame
-from tools import load_image
+from tools import load_image, win
 
 pygame.init()
 size = width, height = 900, 600
@@ -21,7 +21,6 @@ def show_points(sc):
 
     points2 = font.render(str(p2), True, (255, 255, 255))
     p2_x = 585 if len(str(p2)) <= 1 else 577
-    print(len(str(p2)), p2_x)
     p2_y = 534
     sc.blit(points2, (p2_x, p2_y))
 
@@ -127,7 +126,7 @@ class FishGroup(pygame.sprite.Group):
 
     def update(self, *args):
         super(FishGroup, self).update()
-        rnd = random.randint(0, 150)
+        rnd = random.randint(0, 170)
         if self.good_flag or self.bomb_flag:
             self.timer += 1
         if self.timer > 60 and self.bomb_flag:
@@ -141,12 +140,13 @@ class FishGroup(pygame.sprite.Group):
         if rnd == 0 and not self.bomb_flag and not self.good_flag:
             self.bomb.show()
             self.bomb_flag = True
-        elif rnd == 1 and not self.bomb_flag and not self.good_flag:
+        elif rnd in (1, 2) and not self.bomb_flag and not self.good_flag:
             self.good.show()
             self.good_flag = True
 
 
 def start_cat():
+    end_flag = False
     screen = pygame.display.set_mode(size)
 
     all_sprites = pygame.sprite.Group()
@@ -183,6 +183,9 @@ def start_cat():
         fishs.update()
         all_sprites.update()
         all_sprites.draw(screen)
+        # if p1 > 4 or p2 > 4:
+        #     win(p1, p2)
+        #     break
         show_points(screen)
         pygame.display.flip()
         clock.tick(fps)

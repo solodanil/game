@@ -293,5 +293,4 @@ def run_car():
         pygame.display.flip()
         fps.tick(6)
 
-
-pygame.quit()
+    pygame.quit()
