@@ -34,31 +34,24 @@ def hover(pos, click=True):
         if click:
             return start_bg_kub
         else:
-            pass
+            run_ping()
+            start_cat()
+            run_car()
     elif x in range(500, 720) and y in range(60, 250):
         if click:
             return start_bg_ping
         else:
-            try:
-                run_ping()
-            except pygame.error:
-                pass
+            run_ping()
     elif x in range(180, 400) and y in range(300, 500):
         if click:
             return start_bg_pow
         else:
-            try:
-                start_cat()
-            except pygame.error:
-                pass
+            start_cat()
     elif x in range(500, 720) and y in range(300, 500):
         if click:
             return start_bg_car
         else:
-            try:
-                run_car()
-            except pygame.error:
-                pass
+            run_car()
     return start_bg
 
 
@@ -72,8 +65,11 @@ def start_screen():
                 terminate()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 hover(pygame.mouse.get_pos(), click=False)
-        pygame.display.flip()
-        clock.tick(FPS)
+        try:
+            pygame.display.flip()
+            clock.tick(FPS)
+        except pygame.error:
+            terminate()
 
 
 if __name__ == '__main__':

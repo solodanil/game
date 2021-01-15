@@ -128,7 +128,7 @@ class FishGroup(pygame.sprite.Group):
 
     def update(self, *args):
         super(FishGroup, self).update()
-        rnd = random.randint(0, 150)
+        rnd = random.randint(0, 170)
         if self.good_flag or self.bomb_flag:
             self.timer += 1
         if self.timer > 60 and self.bomb_flag:
@@ -142,7 +142,7 @@ class FishGroup(pygame.sprite.Group):
         if rnd == 0 and not self.bomb_flag and not self.good_flag:
             self.bomb.show()
             self.bomb_flag = True
-        elif rnd == 1 and not self.bomb_flag and not self.good_flag:
+        elif rnd in (1, 2) and not self.bomb_flag and not self.good_flag:
             self.good.show()
             self.good_flag = True
 
