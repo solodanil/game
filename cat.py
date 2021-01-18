@@ -191,6 +191,7 @@ def start_cat():
         clock.tick(fps)
 
     pygame.quit()
+    return p1, p2
 
 
 if __name__ == '__main__':

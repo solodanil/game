@@ -1,7 +1,7 @@
 import sys
 
 import pygame
-from tools import load_image
+from tools import load_image, win
 from cat import start_cat
 from play2 import run_ping
 from play1 import run_car
@@ -29,14 +29,18 @@ def terminate():
 def hover(pos, click=True):
     pygame.mixer.music.play(-1)
     x, y = pos[0], pos[1]
-    # 180, 60
+    p1, p2 = 0, 0
     if x in range(180, 400) and y in range(60, 250):
         if click:
             return start_bg_kub
         else:
-            run_ping()
-            start_cat()
-            run_car()
+            ping = run_ping()
+            cat = start_cat()
+            car = run_car()
+            p1 = p1 + ping[0] + cat[0] + car[0]
+            p2 = p2 + ping[1] + cat[1] + car[1]
+            win(p1, p2)
+
     elif x in range(500, 720) and y in range(60, 250):
         if click:
             return start_bg_ping

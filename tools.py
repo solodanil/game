@@ -5,9 +5,10 @@ import random
 import pygame
 import pygame.examples.eventlist
 
-FPS = 30
+FPS = 10
 size = WIDTH, HEIGHT = 900, 600
 screen = pygame.display.set_mode(size)
+all_sprites = pygame.sprite.Group()
 
 
 def load_image(name, colorkey=None):
@@ -73,28 +74,31 @@ def create_particles(position):
 
 
 def win(p1, p2):  # нужно обязательно сделать
-    screen = pygame.display.set_mode(size)
+    pygame.init()
+    win_screen = pygame.display.set_mode(size)
     fon = pygame.transform.scale(load_image('start_bg.png'), (WIDTH, HEIGHT))
-    screen.blit(fon, (0, 0))
+    win_screen.blit(fon, (0, 0))
     clock = pygame.time.Clock()
-    all_sprites = pygame.sprite.Group()
+    run_game = True
 
-    while True:
+    while run_game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    # создаём частицы по щелчку мыши
-                    create_particles(pygame.mouse.get_pos())
+                run_game = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # создаём частицы по щелчку мыши
+                create_particles(pygame.mouse.get_pos())
 
-                all_sprites.update()
-                screen.fill((0, 0, 0))
-                all_sprites.draw(screen)
-                pygame.display.flip()
+            all_sprites.update()
+            win_screen.fill((0, 0, 0))
+            all_sprites.draw(win_screen)
+            pygame.display.flip()
         clock.tick(FPS)
 
     pygame.quit()
 
 
 if __name__ == '__main__':
-    pygame.examples.eventlist.main()
+    win(0, 0)
+#    pygame.examples.eventlist.main()

@@ -279,6 +279,7 @@ def run_car():
                     pygame.display.flip()
                     time.sleep(5)
                     done = 0
+                    p1, p2 = 3, 0
                 elif k_y == 60:
                     screensize.fill(black)
                     font = pygame.font.Font(None, 150)
@@ -287,6 +288,7 @@ def run_car():
                     pygame.display.flip()
                     time.sleep(5)
                     done = 0
+                    p1, p2 = 0, 3
 
         pygame.draw.rect(screensize, magenta, [k_x, k_y, 30, 30], 0)
         pygame.draw.rect(screensize, turquoise, [k_x1, k_y1, 30, 30], 0)
@@ -294,3 +296,4 @@ def run_car():
         fps.tick(6)
 
     pygame.quit()
+    return p1, p2

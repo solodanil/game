@@ -196,6 +196,7 @@ def run_ping():
         pygame.display.update()
 
     pygame.quit()
+    return p1_score, p2_score
 
 
 if __name__ == '__main__':
