@@ -5,7 +5,7 @@ import random
 import pygame
 import pygame.examples.eventlist
 
-FPS = 10
+FPS = 30
 size = WIDTH, HEIGHT = 900, 600
 screen = pygame.display.set_mode(size)
 all_sprites = pygame.sprite.Group()
@@ -76,24 +76,30 @@ def create_particles(position):
 def win(p1, p2):  # нужно обязательно сделать
     pygame.init()
     win_screen = pygame.display.set_mode(size)
-    fon = pygame.transform.scale(load_image('start_bg.png'), (WIDTH, HEIGHT))
+    fon = load_image('start_bg.png')
     win_screen.blit(fon, (0, 0))
     clock = pygame.time.Clock()
     run_game = True
+    timer = 0
 
     while run_game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
                 run_game = False
+                pygame.quit()
+                return None
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # создаём частицы по щелчку мыши
                 create_particles(pygame.mouse.get_pos())
-
-            all_sprites.update()
-            win_screen.fill((0, 0, 0))
-            all_sprites.draw(win_screen)
-            pygame.display.flip()
+        timer += 1
+        if timer == 5:
+            create_particles((random.randint(0, 850), random.randint(0, 450)))
+            timer = 0
+        all_sprites.update()
+        win_screen.fill((0, 0, 0))
+        win_screen.blit(fon, (0, 0))
+        all_sprites.draw(win_screen)
+        pygame.display.flip()
         clock.tick(FPS)
 
     pygame.quit()
