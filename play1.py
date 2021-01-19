@@ -277,18 +277,18 @@ def run_car():
                     winner1 = font.render("1 выиграл", 1, turquoise)
                     screensize.blit(winner1, (170, 200))
                     pygame.display.flip()
-                    time.sleep(5)
+                    # time.sleep(5)
                     done = 0
-                    p1, p2 = 3, 0
+                    return 0, 5
                 elif k_y == 60:
                     screensize.fill(black)
                     font = pygame.font.Font(None, 150)
                     winner2 = font.render("2 выиграл", 1, turquoise)
                     screensize.blit(winner2, (170, 200))
                     pygame.display.flip()
-                    time.sleep(5)
+                    # time.sleep(5)
                     done = 0
-                    p1, p2 = 0, 3
+                    return 5, 0
 
         pygame.draw.rect(screensize, magenta, [k_x, k_y, 30, 30], 0)
         pygame.draw.rect(screensize, turquoise, [k_x1, k_y1, 30, 30], 0)
@@ -296,4 +296,4 @@ def run_car():
         fps.tick(6)
 
     pygame.quit()
-    return p1, p2
+    return 0, 0

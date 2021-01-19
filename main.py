@@ -45,17 +45,20 @@ def hover(pos, click=True):
         if click:
             return start_bg_ping
         else:
-            run_ping()
+            p = run_ping()
+            win(p[0], p[1])
     elif x in range(180, 400) and y in range(300, 500):
         if click:
             return start_bg_pow
         else:
-            start_cat()
+            p = start_cat()
+            win(p[0], p[1])
     elif x in range(500, 720) and y in range(300, 500):
         if click:
             return start_bg_car
         else:
-            run_car()
+            p = run_car()
+            win(p[0], p[1])
     return start_bg
 
 

@@ -191,7 +191,7 @@ def run_ping():
         my_win.blit(bumper2_img, (b2_x, b2_y))
 
         if p1_score > 4 or p2_score > 4:
-            win(p1_score, p2_score)
+            return p1_score, p2_score
 
         pygame.display.update()
 

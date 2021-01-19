@@ -18,7 +18,6 @@ def show_points(sc):
     p1_x = 273 if len(str(p1)) <= 1 else 265
     p1_y = 32
     sc.blit(points1, (p1_x, p1_y))
-
     points2 = font.render(str(p2), True, (255, 255, 255))
     p2_x = 585 if len(str(p2)) <= 1 else 577
     p2_y = 534
@@ -184,8 +183,7 @@ def start_cat():
         all_sprites.update()
         all_sprites.draw(screen)
         if p1 > 4 or p2 > 4:
-            win(p1, p2)
-            break
+            return p1 if p1 >= 0 else 0, p2 if p2 >= 0 else 0
         show_points(screen)
         pygame.display.flip()
         clock.tick(fps)

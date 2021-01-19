@@ -77,6 +77,7 @@ def win(p1, p2):  # нужно обязательно сделать
     pygame.init()
     win_screen = pygame.display.set_mode(size)
     fon = load_image('win.png')
+    draw_bg = load_image('draw.png')
     clock = pygame.time.Clock()
     p_font = pygame.font.Font(None, 30)
     players_font = pygame.font.Font('Montserrat-Medium.ttf', 40)
@@ -115,6 +116,8 @@ def win(p1, p2):  # нужно обязательно сделать
         win_screen.blit(winner, (510, 160))
         win_screen.blit(points2, (443, 448))
         win_screen.blit(looser, (510, 380))
+        if p1 == p2:
+            win_screen.blit(draw_bg, (0, 0))
         all_sprites.draw(win_screen)
         pygame.display.flip()
         clock.tick(FPS)
@@ -123,5 +126,5 @@ def win(p1, p2):  # нужно обязательно сделать
 
 
 if __name__ == '__main__':
-    win(2, 5)
+    win(3, 7)
 #    pygame.examples.eventlist.main()
