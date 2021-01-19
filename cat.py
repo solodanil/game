@@ -183,9 +183,9 @@ def start_cat():
         fishs.update()
         all_sprites.update()
         all_sprites.draw(screen)
-        # if p1 > 4 or p2 > 4:
-        #     win(p1, p2)
-        #     break
+        if p1 > 4 or p2 > 4:
+            win(p1, p2)
+            break
         show_points(screen)
         pygame.display.flip()
         clock.tick(fps)

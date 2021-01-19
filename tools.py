@@ -76,11 +76,14 @@ def create_particles(position):
 def win(p1, p2):  # нужно обязательно сделать
     pygame.init()
     win_screen = pygame.display.set_mode(size)
-    fon = load_image('start_bg.png')
-    win_screen.blit(fon, (0, 0))
+    fon = load_image('win.png')
     clock = pygame.time.Clock()
+    p_font = pygame.font.Font(None, 30)
+    players_font = pygame.font.Font('Montserrat-Medium.ttf', 40)
     run_game = True
     timer = 0
+    p1_i = -1
+    p2_i = -1
 
     while run_game:
         for event in pygame.event.get():
@@ -88,16 +91,30 @@ def win(p1, p2):  # нужно обязательно сделать
                 run_game = False
                 pygame.quit()
                 return None
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                # создаём частицы по щелчку мыши
-                create_particles(pygame.mouse.get_pos())
         timer += 1
-        if timer == 5:
+        p1_i += 1
+        p2_i += 1
+        if timer == 10:
             create_particles((random.randint(0, 850), random.randint(0, 450)))
             timer = 0
+        if p1_i <= p1:
+            points1 = p_font.render(str(p1_i), True, (40, 50, 75))
+        if p2_i <= p2:
+            points2 = p_font.render(str(p2_i), True, (40, 50, 75))
+        winner = players_font.render('Игрок слева', True, (255, 255, 255))
+        looser = players_font.render('Игрок справа', True, (255, 255, 255))
+        if p2 > p1:
+            winner, looser = looser, winner
+            if p2_i == p2:
+                points1, points2 = points2, points1
+
         all_sprites.update()
         win_screen.fill((0, 0, 0))
         win_screen.blit(fon, (0, 0))
+        win_screen.blit(points1, (443, 240))
+        win_screen.blit(winner, (510, 160))
+        win_screen.blit(points2, (443, 448))
+        win_screen.blit(looser, (510, 380))
         all_sprites.draw(win_screen)
         pygame.display.flip()
         clock.tick(FPS)
@@ -106,5 +123,5 @@ def win(p1, p2):  # нужно обязательно сделать
 
 
 if __name__ == '__main__':
-    win(0, 0)
+    win(2, 5)
 #    pygame.examples.eventlist.main()
